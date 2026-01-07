@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Quiz Application </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700& display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+</head>
+
+<body>
+    <div class="base">
+        <header class="top-nav">
+            <div class="logo">Quiz Master</div>
+            <button class="logout-link" onclick="toggleDarkMode()" style="background: #444; margin-right: 10px;">
+                <i class='bx bxs-moon'></i>
+            </button>
+            <button class="logout-link" onclick="logout()">
+                <i class='bx bx-log-out'></i> Logout
+            </button>
+        </header>
+
+        <main class="page" id="dashboard-section">
+            <h2 style="color: #BF40BF;">Welcome, Admin! 👋</h2>
+            <div style="display: flex; justify-content: space-around; margin: 20px 0;">
+                <div class="stat-card">
+                    <i class='bx bxs-trophy' style="font-size: 24px; color: #FFAC1C;"></i>
+                    <h3 id="dash-high-score">0</h3>
+                    <p>High Score</p>
+                </div>
+                <div class="stat-card">
+                    <i class='bx bxs-check-circle' style="font-size: 24px; color: #28a745;"></i>
+                    <h3 id="dash-quizzes">0</h3>
+                    <p>Quizzes Done</p>
+                </div>
+            </div>
+            <button class="login-btn" onclick="showCategories()" style="background: #FF5C77;">
+                🚀 Start Quiz </button>
+        </main>
+
+        <main class="page" id="category-box">
+            <h2>Select a Subject</h2>
+            <div class="options-container">
+                <button class="login-btn" onclick="initQuiz('programming')" style="background:#6f42c1;">💻
+                    Programming</button>
+                <button class="login-btn" onclick="initQuiz('maths')" style="background:#007bff;">🔢
+                    Mathematics</button>
+                <button class="login-btn" onclick="initQuiz('environment')" style="background:#28a745;">🌿
+                    Environment</button>
+                <button class="login-btn" onclick="initQuiz('general knowledge')" style="background:#ffc107;">🌍 General
+                    Knowledge</button>
+                <button class="login-btn" onclick="initQuiz('sports')" style="background:#fd7e14;">🏆 Sports</button>
+                <button class="login-btn" onclick="initQuiz('space & technology')" style="background:#17a2b8;">🚀 Space
+                    & Technology</button>
+                <button class="back-dashboard-btn" onclick="goToDashboard()"> ⬅️ Back to Dashboard </button>
+            </div>
+        </main>
+
+        <main class="page quiz-box" id="main-quiz" style="display:none;">
+            <div id="progress-container"
+                style="width: 100%; background: #eee; height: 10px; border-radius: 5px; margin-bottom: 20px;">
+                <div id="progress-bar"
+                    style="width: 0%; background: #28a745; height: 100%; border-radius: 5px; transition: 0.3s;"></div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h3 id="question-number" style="font-size: 16px;"></h3>  
+                <button id="lifeline-btn" class="logout-link" style="background:#ffc107; color:black; font-size: 12px;"
+                    onclick="useLifeline()">
+                    <i class='bx bx-bulb'></i> 50-50 Lifeline
+                </button>
+            </div>
+            <p id="timer" style="font-weight: bold; color: #FF5C77;">Time Left: 15s</p>
+            
+            <hr>
+            <h2 id="question-text" style="margin-top: 15px;"></h2>
+            <div class="options-container" id="options-box">
+                <button class="option-btn" onclick="checkAnswer(0)"></button>
+                <button class="option-btn" onclick="checkAnswer(1)"></button>
+                <button class="option-btn" onclick="checkAnswer(2)"></button>
+                <button class="option-btn" onclick="checkAnswer(3)"></button>
+            </div>
+            <button id="next-btn" class="login-btn" style="background:#28a745; display: none;"
+                onclick="nextQuestion()">Next Question</button>
+        </main>
+    </div>
+
+    <script src="question.js"></script>
+</body>
+
+</html>
